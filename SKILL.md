@@ -53,3 +53,15 @@ The command must be the existing CLI entry point. Do not replace a terminal prog
 Report the chosen type, lifecycle mapping, supported architectures, Release tag, asset names, checksum verification, and any behavior that remains delegated to upstream. Never claim registry approval until the automated registry workflow has actually indexed the Release.
 
 For the complete manifest examples and S-UI/3X-UI notes, read `references/manifest-examples.md` in this skill.
+
+## Registry discovery
+
+After the Release is published, do not edit the central registry manually. The Playkeen Actions registry searches public repositories whose names contain `keenplay-`, reads the root `playkeen.yaml`, selects a published Release (including prereleases), and records its archive URL and SHA-256. Confirm the result in `https://raw.githubusercontent.com/tommilevs/playkeen-registry/main/registry/index.json`.
+
+## Entware installation target
+
+The reference device is an aarch64 Entware router. Native `opkg` applications should keep their package lifecycle and dependencies in the `.ipk`; Playkeen must not reimplement those steps. Bash adapters must be POSIX `sh`, preserve executable bits, and avoid Bash-only syntax. A Playkeen application can expose both its WEB panel and its terminal CLI: the WEB panel remains its own service, while `terminal` describes the existing CLI for the administrator ttyd bridge.
+
+## Report in English first
+
+Every adapter repository must have an English-first `README.md` and a Russian `README.ru.md`. Report exact Release URLs, checksum assets, registry indexing evidence, and target-device test results. If an upstream installer remains delegated, state the pinned commit and the delegated paths explicitly.
