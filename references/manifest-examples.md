@@ -1,4 +1,4 @@
-# Playkeen manifest examples
+# Unixplay manifest examples
 
 ## Bash application
 
